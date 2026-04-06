@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aegis Ring Portal | PLTW Capstone</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body { 
+            font-family: 'Inter', -apple-system, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container { max-width: 850px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 3rem; }
+
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.025em; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 1.5rem; }
+
+        .project-meta {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .main-card {
+            background: var(--card);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .info-box {
+            background: #f1f5f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: left;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .input-group { margin-bottom: 1.5rem; text-align: left; }
+        label { display: block; font-weight: 600; margin-bottom: 0.5rem; }
+        
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper i { position: absolute; left: 12px; color: var(--text-muted); width: 18px; }
+
+        input {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .portfolio-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-link:hover { text-decoration: underline; }
+
+        /* Tech Specs Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .spec-item i { color: var(--primary); margin-bottom: 0.75rem; }
+        .spec-item h3 { font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .spec-item p { font-size: 0.8rem; color: var(--text-muted); }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+
+        #status { margin-top: 1.5rem; padding: 12px; border-radius: 6px; display: none; }
+        .status-success { display: block !important; background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .status-error { display: block !important; background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge">PLTW Senior Engineering Capstone Project</span>
+        <h1>Aegis Ring Portal</h1>
+        <p class="subtitle">A secure remote configuration interface for the Aegis Ring, a discreet personal safety device designed for high-risk situations.</p>
+        
+        <div class="project-meta">
+            Developed by: <strong>Logan Tan & Montgomery Locke</strong>
+        </div>
+    </header>
+
+    <div class="main-card">
+        <div class="info-box">
+            <strong>About this Portal:</strong><br>
+            This interface allows users to update their emergency contact information remotely. Once saved, the Aegis Ring hardware syncs this data via LTE Cat-M1, ensuring that the device remains independent of local smartphone infrastructure during an emergency.
+        </div>
+
+        <div class="input-group">
+            <label for="phone">Trusted Emergency Contact</label>
+            <div class="input-wrapper">
+                <i data-lucide="phone"></i>
+                <input type="text" id="phone" placeholder="+1 (555) 000-0000" />
+            </div>
+        </div>
+
+        <button id="submitBtn" onclick="updateContact()">
+            <span>Sync to Aegis Ring</span>
+        </button>
+
+        <div id="status"></div>
+
+        <a href="https://sites.google.com/riversideunified.org/logantan-iedpoeportfolio/edd-senior-capstone-project" class="portfolio-link" target="_blank">
+            <i data-lucide="external-link" style="width:16px"></i>
+            About this Project
+        </a>
+    </div>
+
+    <!-- Technical Infrastructure Showcase -->
+    <div class="specs-grid">
+        <div class="spec-item">
+            <i data-lucide="cpu"></i>
+            <h3>ESP32 Core</h3>
+            <p>Dual-core processing with NVRAM persistence.</p>
+        </div>
+        <div class="spec-item">
+            <i data-lucide="signal"></i>
+            <h3>LTE Cat-M1</h3>
+            <p>Global cellular connectivity via SIM7080G.</p>
+        </div>
+        <div class="spec-item">
+            <i data-lucide="map-pin"></i>
+            <h3>GNSS Positioning</h3>
+            <p>High-precision GPS/GLONASS tracking via Adafruit GPS.</p>
+        </div>
+        <div class="spec-item">
+            <i data-lucide="vibrate"></i>
+            <h3>Haptic Driver</h3>
+            <p>Precise alert feedback via DRV2605L & LRA.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Aegis Ring Project. Riverside Unified School District PLTW Engineering.</p>
+    </footer>
+</div>
+
+<script>
+    lucide.createIcons();
+
+    async function updateContact() {
+        const phone = document.getElementById('phone').value.trim();
+        const statusDiv = document.getElementById('status');
+        const dbUrl = "https://your-project-id-default-rtdb.firebaseio.com/contact.json"; 
+
+        if (!phone.startsWith('+')) {
+            showStatus("Error: Use international format (e.g., +1234567890).", "error");
+            return;
+        }
+
+        try {
+            const response = await fetch(dbUrl, {
+                method: 'PUT',
+                body: JSON.stringify({ number: phone, last_updated: new Date().toISOString() })
+            });
+            if (response.ok) showStatus("Aegis Ring successfully updated in cloud storage.", "success");
+            else throw new Error();
+        } catch (err) {
+            showStatus("Network Error. Check Firebase configuration.", "error");
+        }
+    }
+
+    function showStatus(msg, type) {
+        const s = document.getElementById('status');
+        s.innerText = msg;
+        s.className = type === 'success' ? 'status-success' : 'status-error';
+    }
+</script>
+</body>
+</html>
