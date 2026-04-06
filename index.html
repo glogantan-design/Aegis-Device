@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +38,6 @@
             border-radius: 98px;
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.01em;
             display: inline-block;
             margin-bottom: 20px;
         }
@@ -47,13 +45,7 @@
         h1 { font-size: 56px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 15px; }
         .subtitle { font-size: 24px; color: var(--apple-muted); font-weight: 500; max-width: 700px; margin: 0 auto; }
 
-        /* Bento Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin-bottom: 40px; }
 
         .card {
             background: var(--apple-card);
@@ -63,75 +55,47 @@
             padding: 30px;
             box-shadow: 0 4px 24px rgba(0,0,0,0.04);
             border: 1px solid rgba(255,255,255,0.3);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .card:hover { transform: translateY(-5px); }
-
-        .sync-card { grid-column: span 12; }
-        .manual-card { grid-column: span 7; }
-        .haptic-card { grid-column: span 5; }
+        .full-card { grid-column: span 12; }
+        .left-card { grid-column: span 7; }
+        .right-card { grid-column: span 5; }
 
         h3 { font-size: 21px; font-weight: 600; margin-bottom: 20px; }
 
-        /* Inputs & Buttons */
-        .input-row { display: flex; gap: 15px; margin-top: 20px; }
-        .input-field { flex: 1; }
-        input {
+        /* ID Search Steps */
+        .id-steps { background: #fff; border-radius: 16px; padding: 20px; margin-top: 20px; border: 1px solid #d2d2d7; }
+        .step-row { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; font-size: 15px; }
+        .step-num { width: 24px; height: 24px; background: var(--apple-text); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
+        /* Screenshot Placeholder */
+        .image-placeholder {
             width: 100%;
-            padding: 16px 20px;
-            background: #ffffff;
-            border: 1px solid #d2d2d7;
+            height: 200px;
+            background: #e8e8ed;
             border-radius: 12px;
-            font-size: 17px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        input:focus { border-color: var(--apple-blue); }
-
-        button {
-            padding: 16px 30px;
-            background: var(--apple-blue);
-            color: white;
-            border: none;
-            border-radius: 98px;
-            font-size: 17px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        button:hover { background: #0077ed; opacity: 0.9; }
-
-        /* Icon Styles */
-        .icon-wrap { width: 40px; height: 40px; background: #f5f5f7; border-radius: 10px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .icon-wrap i { color: var(--apple-blue); width: 20px; }
-
-        /* Feature List */
-        .step-list { list-style: none; }
-        .step-item { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 20px; }
-        .step-text h4 { font-size: 16px; font-weight: 600; }
-        .step-text p { font-size: 14px; color: var(--apple-muted); }
-
-        .status-pill {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 15px;
-            background: rgba(0,0,0,0.03);
-            border-radius: 10px;
-            margin-bottom: 10px;
-            font-size: 14px;
-            font-weight: 500;
+            justify-content: center;
+            color: var(--apple-muted);
+            font-size: 13px;
+            border: 2px dashed #d2d2d7;
+            margin-top: 15px;
         }
 
-        footer { text-align: center; color: var(--apple-muted); font-size: 14px; margin-top: 80px; }
-        .founder-link { color: var(--apple-blue); text-decoration: none; font-weight: 600; }
+        .input-row { display: flex; gap: 15px; margin-top: 20px; }
+        input { flex: 1; padding: 16px 20px; border: 1px solid #d2d2d7; border-radius: 12px; font-size: 17px; outline: none; }
+        input:focus { border-color: var(--apple-blue); }
 
-        @media (max-width: 768px) {
-            .manual-card, .haptic-card { grid-column: span 12; }
-            h1 { font-size: 40px; }
-            .input-row { flex-direction: column; }
-        }
+        button { padding: 16px 30px; background: var(--apple-blue); color: white; border: none; border-radius: 98px; font-size: 17px; font-weight: 600; cursor: pointer; }
+        
+        .status-pill { display: flex; align-items: center; gap: 10px; padding: 10px 15px; background: rgba(0,0,0,0.03); border-radius: 10px; margin-bottom: 10px; font-size: 14px; }
+
+        footer { text-align: center; color: var(--apple-muted); font-size: 12px; margin-top: 100px; padding-top: 40px; border-top: 1px solid #d2d2d7; }
+        .footer-line { margin-bottom: 8px; }
+        .founder-link { color: var(--apple-blue); text-decoration: none; font-weight: 500; }
+
+        @media (max-width: 768px) { .left-card, .right-card { grid-column: span 12; } .input-row { flex-direction: column; } }
     </style>
 </head>
 <body>
@@ -139,96 +103,105 @@
 <div class="container">
     <header>
         <span class="badge">PLTW Engineering Senior Capstone</span>
-        <h1>Aegis Ring.</h1>
-        <p class="subtitle">Discreet safety. Independent connectivity. Professional protection.</p>
-        <p style="margin-top: 20px; font-weight: 600;">Logan Tan & Montgomery Locke</p>
+        <h1>Aegis Ring</h1>
+        <p class="subtitle">Discreet safety. Independent connectivity.</p>
     </header>
 
     <div class="grid">
-        <!-- Main Sync Card -->
-        <div class="card sync-card">
+        <!-- 1. IDENTIFY YOUR DEVICE -->
+        <div class="card full-card">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px;">
+                <div style="flex: 1.2; min-width: 300px;">
+                    <h3>Find Your Device ID</h3>
+                    <p style="color: var(--apple-muted); font-size: 17px;">Follow these steps to locate your ring's unique hardware identifier.</p>
+                    
+                    <div class="id-steps">
+                        <div class="step-row">
+                            <div class="step-num">1</div>
+                            <p>Press the ring button <strong>5 times quickly</strong>.</p>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">2</div>
+                            <p>Wait for <strong>3 vibrations</strong> (Haptic Confirmation).</p>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">3</div>
+                            <p>Open your phone's <strong>Wi-Fi Settings</strong>.</p>
+                        </div>
+                        <div class="step-row">
+                            <div class="step-num">4</div>
+                            <p>Connect to <strong>"Aegis Ring [ID]"</strong>.</p>
+                        </div>
+                    </div>
+                    <p style="font-size: 13px; margin-top: 15px; color: var(--apple-blue); font-weight: 600;">The unique code in the Wi-Fi name is your Device ID.</p>
+                </div>
+                
+                <div style="flex: 0.8; min-width: 300px;">
+                    <div class="image-placeholder">
+                        <div style="text-align: center;">
+                            <i data-lucide="smartphone" style="width: 32px; margin-bottom: 8px; opacity: 0.5;"></i>
+                            <p>[ Settings Screenshot ]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. SYNC SETTINGS -->
+        <div class="card full-card">
             <h3>Remote Device Sync</h3>
-            <p style="color: var(--apple-muted); margin-bottom: 25px;">Update your emergency preferences over the LTE Cat-M1 network.</p>
             <div class="input-row">
-                <input type="text" id="deviceID" placeholder="Device ID (6-Chars)" maxlength="6">
-                <input type="text" id="phone" placeholder="Emergency Contact (+1...)">
+                <input type="text" id="deviceID" placeholder="Device ID (e.g. A1B2C3)" maxlength="6">
+                <input type="text" id="phone" placeholder="Trusted Contact (+1...)">
                 <button onclick="updateContact()">Sync Settings</button>
             </div>
             <div id="status" style="margin-top: 15px; font-size: 14px; display: none; font-weight: 600;"></div>
         </div>
 
-        <!-- Operation Manual -->
-        <div class="card manual-card">
+        <!-- 3. MANUAL & HAPTICS -->
+        <div class="card left-card">
             <h3>Operation Manual</h3>
-            <div class="step-list">
-                <div class="step-item">
-                    <div class="icon-wrap"><i data-lucide="activity"></i></div>
-                    <div class="step-text">
-                        <h4>System Status</h4>
-                        <p><strong>Double-Click:</strong> Check GPS fix and battery level.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="icon-wrap"><i data-lucide="alert-triangle"></i></div>
-                    <div class="step-text">
-                        <h4>Emergency Response</h4>
-                        <p><strong>Triple-Tap:</strong> Transmit live GPS location link via SMS.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="icon-wrap"><i data-lucide="wifi"></i></div>
-                    <div class="step-text">
-                        <h4>Setup Mode</h4>
-                        <p><strong>5-Clicks:</strong> Activate Aegis Hotspot for device identification.</p>
-                    </div>
-                </div>
-            </div>
+            <div class="status-pill"><strong>Double-Click:</strong> Check Device Health</div>
+            <div class="status-pill"><strong>Triple-Tap:</strong> Trigger Emergency Alert</div>
+            <div class="status-pill"><strong>Hold (5s):</strong> Power Down (Sleep)</div>
         </div>
 
-        <!-- Haptic UI Card -->
-        <div class="card haptic-card">
-            <h3>Haptic Interface</h3>
-            <div class="status-pill"><i data-lucide="check" style="color:var(--apple-green)"></i> Healthy: 1 Long Pulse</div>
-            <div class="status-pill"><i data-lucide="navigation" style="color:var(--apple-red)"></i> No GPS: 2 Short Pulses</div>
-            <div class="status-pill"><i data-lucide="zap" style="color:#f59e0b"></i> Low Battery: 3 Short Pulses</div>
-            <div class="status-pill"><i data-lucide="power" style="color:var(--apple-muted)"></i> Sleep: Double Bump</div>
+        <div class="card right-card">
+            <h3>Haptic Reference</h3>
+            <div class="status-pill"><i data-lucide="check" style="color:var(--apple-green)"></i> 1 Long Pulse: System OK</div>
+            <div class="status-pill"><i data-lucide="navigation" style="color:var(--apple-red)"></i> 2 Short: No GPS Fix</div>
+            <div class="status-pill"><i data-lucide="zap" style="color:#f59e0b"></i> 3 Short: Low Battery</div>
         </div>
-    </div>
-
-    <div style="text-align: center;">
-        <a href="https://sites.google.com/riversideunified.org/logantan-iedpoeportfolio/edd-senior-capstone-project" class="founder-link" target="_blank">
-            About this Project <i data-lucide="arrow-up-right" style="width: 14px; display: inline;"></i>
-        </a>
     </div>
 
     <footer>
-        <p>&copy; 2026 Aegis Ring Project. Riverside Unified School District.</p>
-        <p style="margin-top: 10px;">Engineering a safer tomorrow through discreet hardware.</p>
+        <div class="footer-line">
+            <a href="https://sites.google.com/riversideunified.org/logantan-iedpoeportfolio/edd-senior-capstone-project" class="founder-link" target="_blank">
+                About the Design Process <i data-lucide="arrow-up-right" style="width: 12px; display: inline;"></i>
+            </a>
+        </div>
+        <div class="footer-line">
+            Designed in Riverside by <strong>Logan Tan</strong> and <strong>Montgomery Locke</strong>.
+        </div>
+        <div class="footer-line" style="opacity: 0.6;">
+            &copy; 2026 Aegis Ring Project. PLTW Engineering Capstone.
+        </div>
     </footer>
 </div>
 
 <script>
     lucide.createIcons();
-
     async function updateContact() {
         const id = document.getElementById('deviceID').value.trim().toUpperCase();
         const phone = document.getElementById('phone').value.trim();
         const status = document.getElementById('status');
-        
-        if (id.length != 6 || !phone.startsWith('+')) {
-            showStatus("Check ID or Phone format.", "red");
-            return;
-        }
-
-        const dbUrl = `https://aegis-ring-default-rtdb.firebaseio.com/${id}/contact.json`;
-        
+        if (id.length != 6 || !phone.startsWith('+')) { showStatus("Check ID or Phone format.", "red"); return; }
+        const dbUrl = `https://your-project-id-default-rtdb.firebaseio.com/${id}/contact.json`;
         try {
             const r = await fetch(dbUrl, { method: 'PUT', body: JSON.stringify({ number: phone }) });
-            if (r.ok) showStatus("Sync Success. Settings queued for hardware.", "green");
-            else throw new Error();
-        } catch(e) { showStatus("Connection error. Check database URL.", "red"); }
+            if (r.ok) showStatus("Sync Success. Restart device to apply.", "green");
+        } catch(e) { showStatus("Connection error.", "red"); }
     }
-
     function showStatus(msg, color) {
         const s = document.getElementById('status');
         s.style.display = "block";
@@ -236,6 +209,5 @@
         s.innerText = msg;
     }
 </script>
-
 </body>
 </html>
