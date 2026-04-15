@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -284,8 +285,9 @@
         const phone = document.getElementById('phone').value.trim();
         const status = document.getElementById('status');
         
-        if (id.length < 6 || !phone.startsWith('+')) { 
-            showStatus("Check 6-Digit ID or Phone (+1...)", "red"); 
+        // Removed strict validation to allow any information to sync
+        if (!id || !phone) { 
+            showStatus("Please enter both a Device ID and Contact Info.", "red"); 
             return; 
         }
 
@@ -298,16 +300,22 @@
 
             const r = await fetch(dbUrl, { 
                 method: 'PUT', 
-                body: JSON.stringify({ number: phone, lastSync: new Date().toISOString() }) 
+                body: JSON.stringify({ 
+                    number: phone, 
+                    lastSync: new Date().toISOString(),
+                    syncMethod: "Web Dashboard"
+                }) 
             });
 
             if (r.ok) {
-                showStatus(`Sync Successful for ${id}. Restart ring.`, "green");
+                showStatus(`Sync Successful for ${id}.`, "green");
             } else {
-                showStatus("Sync failed. Check connection.", "red");
+                console.error("Sync failed with status:", r.status);
+                showStatus(`Sync failed (${r.status}). Check database rules.`, "red");
             }
         } catch(e) { 
-            showStatus("Connection error.", "red"); 
+            console.error("Connection error:", e);
+            showStatus("Connection error. Check console for details.", "red"); 
         }
     }
 
