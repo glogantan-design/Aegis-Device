@@ -164,11 +164,11 @@
                         </div>
                         <div class="step-row">
                             <div class="step-num">3</div>
-                            <div class="step-text">On your phone, scan for Wi-Fi networks and connect to <b>"Espressif-Config-XXXX"</b>.</div>
+                            <div class="step-text">On your phone, scan for Wi-Fi networks and connect to <b>"HP-Setup-38-OfficeJet-XXXXXX"</b>.</div>
                         </div>
                         <div class="step-row">
                             <div class="step-num">4</div>
-                            <div class="step-text">The 4-character code (XXXX) at the end is your <b>Device ID</b>.</div>
+                            <div class="step-text">The last 6 digits of the network name (XXXXXX) is your <b>Device ID</b>.</div>
                         </div>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
             
             <div class="privacy-note" style="margin-top: 24px;">
                 <i data-lucide="shield-check"></i>
-                <span>Privacy First: Connection is generic to avoid alerting others to the device's presence.</span>
+                <span>Privacy First: The ring mimics a printer Wi-Fi network (HP-Setup...) to remain inconspicuous in your settings.</span>
             </div>
         </div>
 
@@ -192,7 +192,7 @@
         <div class="card one-third-card">
             <h3>2. Configuration</h3>
             <div class="input-group">
-                <input type="text" id="deviceID" placeholder="Device ID (e.g. A1B2)" maxlength="8">
+                <input type="text" id="deviceID" placeholder="6-Digit ID (e.g. 8CAF38)" maxlength="12">
             </div>
             <div class="input-group">
                 <input type="text" id="phone" placeholder="Trusted Contact (+1...)">
@@ -280,16 +280,16 @@
     lucide.createIcons();
 
     async function updateContact() {
-        const id = document.getElementById('deviceID').value.trim().toUpperCase();
+        const id = document.getElementById('deviceID').value.trim().toUpperCase() || "8CAF38";
         const phone = document.getElementById('phone').value.trim();
         const status = document.getElementById('status');
         
-        if (id.length < 4 || !phone.startsWith('+')) { 
-            showStatus("Check ID (Min 4 chars) or Phone (+1...)", "red"); 
+        if (id.length < 6 || !phone.startsWith('+')) { 
+            showStatus("Check 6-Digit ID or Phone (+1...)", "red"); 
             return; 
         }
 
-        const dbUrl = `https://your-project-id-default-rtdb.firebaseio.com/${id}/contact.json`;
+        const dbUrl = `https://aegis-device-sync-default-rtdb.firebaseio.com/${id}/contact.json`;
         
         try {
             status.style.display = "block";
@@ -298,11 +298,11 @@
 
             const r = await fetch(dbUrl, { 
                 method: 'PUT', 
-                body: JSON.stringify({ number: phone }) 
+                body: JSON.stringify({ number: phone, lastSync: new Date().toISOString() }) 
             });
 
             if (r.ok) {
-                showStatus("Sync Successful. Restart device to apply.", "green");
+                showStatus(`Sync Successful for ${id}. Restart ring.`, "green");
             } else {
                 showStatus("Sync failed. Check connection.", "red");
             }
