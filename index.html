@@ -21,9 +21,9 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
 
-        body { 
-            font-family: 'Inter', -apple-system, sans-serif; 
-            background-color: var(--apple-bg); 
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--apple-bg);
             color: var(--apple-text);
             line-height: 1.5;
             padding: 2rem 1rem;
@@ -63,10 +63,10 @@
 
         .card:hover { transform: translateY(-2px); }
 
-        .full-card { grid-column: span 12; }
-        .half-card { grid-column: span 6; }
-        .two-third-card { grid-column: span 8; }
-        .one-third-card { grid-column: span 4; }
+        .full-card     { grid-column: span 12; }
+        .half-card     { grid-column: span 6; }
+        .two-third-card  { grid-column: span 8; }
+        .one-third-card  { grid-column: span 4; }
 
         h3 { font-size: 24px; font-weight: 600; margin-bottom: 24px; letter-spacing: -0.01em; }
 
@@ -83,50 +83,77 @@
 
         /* Sync Form */
         .input-group { position: relative; width: 100%; margin-bottom: 16px; }
-        input { 
-            width: 100%; 
-            padding: 18px 24px; 
+        .input-group input {
+            width: 100%;
+            padding: 18px 24px;
             background: #fff;
-            border: 1px solid #d2d2d7; 
-            border-radius: 16px; 
-            font-size: 17px; 
-            outline: none; 
-            transition: border-color 0.2s;
+            border: 1px solid #d2d2d7;
+            border-radius: 16px;
+            font-size: 17px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
-        input:focus { border-color: var(--apple-blue); box-shadow: 0 0 0 4px rgba(0,113,227,0.1); }
-        
-        .sync-btn { 
-            width: 100%; 
-            padding: 18px; 
-            background: var(--apple-blue); 
-            color: white; 
-            border: none; 
-            border-radius: 98px; 
-            font-size: 17px; 
-            font-weight: 600; 
-            cursor: pointer; 
+        .input-group input:focus { border-color: var(--apple-blue); box-shadow: 0 0 0 4px rgba(0,113,227,0.1); }
+
+        /* Inline field-level validation message */
+        .field-hint {
+            display: none;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 6px;
+            padding: 6px 12px;
+            border-radius: 8px;
+        }
+        .field-hint.error  { display: block; color: var(--apple-red);   background: rgba(255,59,48,0.08); }
+        .field-hint.success{ display: block; color: var(--apple-green); background: rgba(52,199,89,0.08); }
+
+        .sync-btn {
+            width: 100%;
+            padding: 18px;
+            background: var(--apple-blue);
+            color: white;
+            border: none;
+            border-radius: 98px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
             transition: opacity 0.2s;
         }
-        .sync-btn:hover { opacity: 0.9; }
+        .sync-btn:hover   { opacity: 0.9; }
+        .sync-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+        /* Status Banner */
+        #status {
+            display: none;
+            margin-top: 20px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+        #status.green { color: var(--apple-green); background: rgba(52,199,89,0.10); border: 1px solid rgba(52,199,89,0.25); }
+        #status.red   { color: var(--apple-red);   background: rgba(255,59,48,0.08); border: 1px solid rgba(255,59,48,0.20); }
 
         /* Status Pills */
         .status-pill { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: #fff; border-radius: 14px; margin-bottom: 12px; font-size: 15px; font-weight: 500; border: 1px solid rgba(0,0,0,0.03); }
 
-        footer { text-align: center; color: var(--apple-muted); font-size: 13px; margin-top: 80px; padding-bottom: 40px; }
-        .founder-link { color: var(--apple-blue); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
-
-        .privacy-note { 
-            background: rgba(52, 199, 89, 0.08); 
-            color: var(--apple-green); 
-            padding: 12px 20px; 
-            border-radius: 12px; 
-            font-size: 13px; 
+        .privacy-note {
+            background: rgba(52, 199, 89, 0.08);
+            color: var(--apple-green);
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 13px;
             font-weight: 600;
             margin-bottom: 24px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
+        footer { text-align: center; color: var(--apple-muted); font-size: 13px; margin-top: 80px; padding-bottom: 40px; }
+        .founder-link { color: var(--apple-blue); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
 
         @media (max-width: 900px) {
             .half-card, .two-third-card, .one-third-card { grid-column: span 12; }
@@ -144,7 +171,7 @@
     </header>
 
     <span class="section-label">Device Setup</span>
-    
+
     <div class="grid">
         <!-- 1. IDENTIFY YOUR DEVICE -->
         <div class="card two-third-card">
@@ -152,7 +179,7 @@
                 <div style="flex: 1; min-width: 300px;">
                     <h3>1. Initialize Setup Mode</h3>
                     <p style="color: var(--apple-muted); margin-bottom: 24px; font-size: 17px;">For your safety, the ring uses a generic connection name to remain inconspicuous.</p>
-                    
+
                     <div class="setup-steps">
                         <div class="step-row">
                             <div class="step-num">1</div>
@@ -181,7 +208,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="privacy-note" style="margin-top: 24px;">
                 <i data-lucide="shield-check"></i>
                 <span>Privacy First: The ring mimics a printer Wi-Fi network (HP-Setup...) to remain inconspicuous in your settings.</span>
@@ -191,17 +218,36 @@
         <!-- 2. SYNC PORTAL -->
         <div class="card one-third-card">
             <h3>2. Configuration</h3>
+
+            <!-- Device ID field -->
             <div class="input-group">
-                <input type="text" id="deviceID" placeholder="Enter Label or ID (e.g. RING_01)">
+                <input
+                    type="text"
+                    id="deviceID"
+                    placeholder="Device ID (6 digits, e.g. 123456)"
+                    maxlength="6"
+                    inputmode="numeric"
+                    oninput="validateID(this)"
+                >
+                <div class="field-hint" id="idHint"></div>
             </div>
+
+            <!-- Emergency contact phone field -->
             <div class="input-group">
-                <input type="text" id="phone" placeholder="Enter Data to Sync (e.g. Contact Info)">
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Emergency contact phone number"
+                    oninput="validatePhone(this)"
+                >
+                <div class="field-hint" id="phoneHint"></div>
             </div>
-            <button class="sync-btn" onclick="updateContact()">Sync with Cloud</button>
-            <div id="status" style="margin-top: 20px; font-size: 14px; text-align: center; display: none; font-weight: 600;"></div>
-            
+
+            <button class="sync-btn" id="syncBtn" onclick="updateContact()">Sync with Cloud</button>
+            <div id="status"></div>
+
             <p style="font-size: 12px; color: var(--apple-muted); margin-top: 24px; text-align: center;">
-                This portal now allows syncing of any arbitrary text data.
+                Only the registered device ID may update contact data. All writes are validated server-side.
             </p>
         </div>
     </div>
@@ -250,7 +296,7 @@
                 <i data-lucide="moon" style="color: var(--apple-blue)"></i>
                 <span><b>Hold 5s:</b> Deep Sleep (Power Down)</span>
             </div>
-            
+
             <h4 style="margin: 24px 0 12px; font-size: 15px; color: var(--apple-muted);">Haptic Language</h4>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                 <div style="font-size: 13px; padding: 10px; background: #fff; border-radius: 10px;">1 Pulse: System OK</div>
@@ -267,59 +313,130 @@
                 View Engineering Documentation <i data-lucide="external-link" style="width: 14px;"></i>
             </a>
         </div>
-        <div style="opacity: 0.8; margin-bottom: 8px;">
-            Developed by <b>Logan Tan</b> & <b>Montgomery Locke</b>
-        </div>
-        <div style="opacity: 0.5;">
-            Riverside, California • Senior Engineering Capstone 2026
-        </div>
+        <div style="opacity: 0.8; margin-bottom: 8px;">Developed by <b>Logan Tan</b> & <b>Montgomery Locke</b></div>
+        <div style="opacity: 0.5;">Riverside, California • Senior Engineering Capstone 2026</div>
     </footer>
 </div>
 
 <script>
     lucide.createIcons();
 
+    // ─── Constants ────────────────────────────────────────────────────────────
+    const AUTHORIZED_ID = "123456";
+    const DB_BASE       = "https://aegis-ring-default-rtdb.firebaseio.com/";
+
+    // E.164-compatible phone regex: optional "+", 7–15 digits, spaces/dashes/dots/parens allowed
+    const PHONE_REGEX = /^[+]?[(]?[0-9]{1,4}[)]?[-\s.]?[(]?[0-9]{1,4}[)]?[-\s.]?[0-9]{1,9}([-\s.][0-9]{1,9})*$/;
+
+    // ─── Real-time field validation ───────────────────────────────────────────
+
+    /**
+     * validateID — called on every keystroke in the Device ID field.
+     * Shows a green tick when the format looks right, red hint otherwise.
+     * Does NOT enforce whether the ID is authorized (that happens on submit).
+     */
+    function validateID(input) {
+        const hint = document.getElementById('idHint');
+        const val  = input.value.trim();
+
+        if (val.length === 0) {
+            setHint(hint, '', null);
+        } else if (/^\d{6}$/.test(val)) {
+            setHint(hint, '✓ Valid format', 'success');
+        } else {
+            setHint(hint, 'Device ID must be exactly 6 digits', 'error');
+        }
+        refreshButton();
+    }
+
+    /**
+     * validatePhone — called on every keystroke in the phone field.
+     * Shows "Validation Error" styling for malformed numbers.
+     */
+    function validatePhone(input) {
+        const hint = document.getElementById('phoneHint');
+        const val  = input.value.trim();
+
+        if (val.length === 0) {
+            setHint(hint, '', null);
+        } else if (PHONE_REGEX.test(val) && val.replace(/\D/g,'').length >= 7) {
+            setHint(hint, '✓ Valid phone number', 'success');
+        } else {
+            setHint(hint, 'Validation Error — enter a valid phone number (e.g. +1 555-867-5309)', 'error');
+        }
+        refreshButton();
+    }
+
+    /** Helper: set a hint element's text and CSS class. */
+    function setHint(el, msg, state) {
+        el.textContent = msg;
+        el.className   = 'field-hint' + (state ? ' ' + state : '');
+    }
+
+    /** Disable the Sync button if either field has a visible error. */
+    function refreshButton() {
+        const idVal    = document.getElementById('deviceID').value.trim();
+        const phoneVal = document.getElementById('phone').value.trim();
+        const idOk     = /^\d{6}$/.test(idVal);
+        const phoneOk  = PHONE_REGEX.test(phoneVal) && phoneVal.replace(/\D/g,'').length >= 7;
+        document.getElementById('syncBtn').disabled = !(idOk && phoneOk);
+    }
+
+    // ─── Submit ───────────────────────────────────────────────────────────────
+
     async function updateContact() {
-        const idInput = document.getElementById('deviceID').value.trim();
-        const dataInput = document.getElementById('phone').value.trim();
-        const status = document.getElementById('status');
-        
-        const id = idInput.toUpperCase() || "DEFAULT_ID";
-        const payload = dataInput || "NO_DATA";
+        const idVal    = document.getElementById('deviceID').value.trim();
+        const phoneVal = document.getElementById('phone').value.trim();
 
-        const dbUrl = `https://aegis-ring-default-rtdb.firebaseio.com/${id}/contact.json`;
-        
+        // ── 1. Authorization check (client-side guard, mirrored by DB rules) ──
+        if (idVal !== AUTHORIZED_ID) {
+            showStatus("403 Forbidden — Device ID not recognized.", "red");
+            return;
+        }
+
+        // ── 2. Phone validation (client-side guard, mirrored by DB rules) ─────
+        if (!PHONE_REGEX.test(phoneVal) || phoneVal.replace(/\D/g,'').length < 7) {
+            showStatus("Validation Error — malformed or invalid phone number.", "red");
+            return;
+        }
+
+        // ── 3. Write to Firebase ──────────────────────────────────────────────
+        const url = `${DB_BASE}${idVal}/contact.json`;
+
+        showStatus("Connecting to Cloud…", null);
+
         try {
-            status.style.display = "block";
-            status.innerText = "Connecting to Cloud...";
-            status.style.color = "var(--apple-muted)";
-
-            const r = await fetch(dbUrl, { 
-                method: 'PUT', 
-                body: JSON.stringify({ 
-                    number: payload, 
-                    lastSync: new Date().toISOString(),
-                    syncMethod: "Universal Sync"
-                }) 
+            const response = await fetch(url, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    number:     phoneVal,
+                    lastSync:   new Date().toISOString(),
+                    syncMethod: "Portal Sync v2"
+                })
             });
 
-            if (r.ok) {
-                showStatus(`Sync Successful for [${id}].`, "green");
+            if (response.ok) {
+                showStatus(`✓ Sync successful for device [${idVal}].`, "green");
+            } else if (response.status === 403) {
+                // Firebase itself rejected the write (rule mismatch)
+                showStatus("403 Forbidden — write rejected by security rules.", "red");
             } else {
-                console.error("Sync failed with status:", r.status);
-                showStatus(`Sync failed (${r.status}). Check database rules.`, "red");
+                showStatus(`Sync failed (HTTP ${response.status}). Check database rules.`, "red");
             }
-        } catch(e) { 
-            console.error("Connection error:", e);
-            showStatus("Connection error. Check console.", "red"); 
+
+        } catch (err) {
+            console.error("Network error:", err);
+            showStatus("Connection error. Check your network and try again.", "red");
         }
     }
 
+    // ─── Status banner helper ─────────────────────────────────────────────────
     function showStatus(msg, color) {
-        const s = document.getElementById('status');
-        s.style.display = "block";
-        s.style.color = color === "green" ? "var(--apple-green)" : "var(--apple-red)";
-        s.innerText = msg;
+        const el = document.getElementById('status');
+        el.textContent = msg;
+        el.className   = color || '';          // 'green', 'red', or ''
+        el.style.display = "block";
     }
 </script>
 </body>
